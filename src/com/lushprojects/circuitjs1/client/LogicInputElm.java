@@ -31,7 +31,7 @@ package com.lushprojects.circuitjs1.client;
 	    numHandles=1;
 	    hiV = 5;
 	    loV = 0;
-	    
+	    flags |= FLAG_NUMERIC;
 	}
 	public LogicInputElm(int xa, int ya, int xb, int yb, int f,
 			     StringTokenizer st) {
@@ -46,6 +46,9 @@ package com.lushprojects.circuitjs1.client;
 	    }
 	    if (isTernary())
 		posCount = 3;
+	    
+	    flags |= FLAG_NUMERIC;
+
 	}
 	boolean isTernary() { return (flags & FLAG_TERNARY) != 0; }
 	boolean isNumeric() { return (flags & (FLAG_TERNARY|FLAG_NUMERIC)) != 0; }
@@ -63,7 +66,7 @@ package com.lushprojects.circuitjs1.client;
 	    Font f = new Font("SansSerif", Font.BOLD, 20);
 	    g.setFont(f);
 	    g.setColor(needsHighlight() ? selectColor : whiteColor);
-	    String s = position == 0 ? "L" : "H";
+	    String s = position == 0 ? "Low" : "H";
 	    if (isNumeric())
 		s = "" + position;
 	    setBbox(point1, lead1, 0);
@@ -78,7 +81,7 @@ package com.lushprojects.circuitjs1.client;
 	
 	Rectangle getSwitchRect() {
 	    return new Rectangle(x2-10, y2-10, 20, 20);
-	}	
+	}	 
 
 	void setCurrent(int vs, double c) { current = -c; }
 	void stamp() {
@@ -123,7 +126,7 @@ package com.lushprojects.circuitjs1.client;
 	    if (n == 2)
 		loV = ei.value;
 	    if (n == 3) {
-		if (ei.checkbox.getState())
+		if ( ei.checkbox.getState())
 		    flags |= FLAG_NUMERIC;
 		else
 		    flags &= ~FLAG_NUMERIC;

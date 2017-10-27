@@ -48,7 +48,7 @@ public class AboutBox extends PopupPanel {
 		vp = new VerticalPanel();
 		setWidget(vp);
 		vp.setWidth("400px");
-		vp.add(new HTML("<p>Circuit Simulator version "+version+".</p>"+
+		vp.add(new HTML("<p>Circuis st Simulator version "+version+".</p>"+
 		"<p>Original by Paul Falstad.<br><a href=\"http://www.falstad.com/\" target=\"_blank\">http://www.falstad.com/</a></p>"+
 		"<p>JavaScript conversion by Iain Sharp.<br><a href=\"http://lushprojects.com/\" target=\"_blank\">http://lushprojects.com/</a></p>"+
 		"<p>Thanks to: Edward Calver for 15 new components and other improvements; Rodrigo Hausen for file import/export and many other UI improvements; "+  
