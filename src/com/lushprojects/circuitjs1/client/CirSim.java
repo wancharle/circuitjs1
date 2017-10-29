@@ -845,6 +845,7 @@ MouseOutHandler, MouseWheelHandler {
     	
     	MenuBar gateMenuBar = new MenuBar(true);
     	gateMenuBar.addItem(getClassCheckItem(LS("Add Logic Input"), "LogicInputElm"));
+    	gateMenuBar.addItem(getClassCheckItem(LS("Add Logic Input2"), "LogicInputElm2"));
     	gateMenuBar.addItem(getClassCheckItem(LS("Add Logic Output"), "LogicOutputElm"));
     	gateMenuBar.addItem(getClassCheckItem(LS("Add Inverter"), "InverterElm"));
     	gateMenuBar.addItem(getClassCheckItem(LS("Add NAND Gate"), "NandGateElm"));
@@ -4519,6 +4520,8 @@ MouseOutHandler, MouseWheelHandler {
     		return (CircuitElm) new AntennaElm(x1, y1);
     	if (n=="LogicInputElm")
     		return (CircuitElm) new LogicInputElm(x1, y1);
+    	if (n=="LogicInputElm2")
+		return (CircuitElm) new LogicInputElm2(x1, y1);
     	if (n=="LogicOutputElm")
     		return (CircuitElm) new LogicOutputElm(x1, y1);
     	if (n=="TransformerElm")
