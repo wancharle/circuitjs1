@@ -379,25 +379,25 @@ MouseOutHandler, MouseWheelHandler {
 	layoutPanel = new DockLayoutPanel(Unit.PX);
 	
 	  fileMenuBar = new MenuBar(true);
-	  importFromLocalFileItem = new MenuItem(LS("Import From Local File"), new MyCommand("file","importfromlocalfile"));
+	  importFromLocalFileItem = new MenuItem(LS("Importar de arquivo Local"), new MyCommand("file","importfromlocalfile"));
 	  importFromLocalFileItem.setEnabled(LoadFile.isSupported());
 	  fileMenuBar.addItem(importFromLocalFileItem);
-	  importFromTextItem = new MenuItem(LS("Import From Text"), new MyCommand("file","importfromtext"));
+	  importFromTextItem = new MenuItem(LS("Importar de texto"), new MyCommand("file","importfromtext"));
 	  fileMenuBar.addItem(importFromTextItem);
-	  importFromDropboxItem = new MenuItem(LS("Import From Dropbox"), new MyCommand("file", "importfromdropbox"));
+	  importFromDropboxItem = new MenuItem(LS("Importar do Dropbox"), new MyCommand("file", "importfromdropbox"));
 	  fileMenuBar.addItem(importFromDropboxItem); 
-	  exportAsUrlItem = new MenuItem(LS("Export As Link"), new MyCommand("file","exportasurl"));
+	  exportAsUrlItem = new MenuItem(LS("Exportar como link"), new MyCommand("file","exportasurl"));
 	  fileMenuBar.addItem(exportAsUrlItem);
-	  exportAsLocalFileItem = new MenuItem(LS("Export As Local File"), new MyCommand("file","exportaslocalfile"));
+	  exportAsLocalFileItem = new MenuItem(LS("Exportar como arquivo local"), new MyCommand("file","exportaslocalfile"));
 	  exportAsLocalFileItem.setEnabled(ExportAsLocalFileDialog.downloadIsSupported());
 	  fileMenuBar.addItem(exportAsLocalFileItem);
-	  exportAsTextItem = new MenuItem(LS("Export As Text"), new MyCommand("file","exportastext"));
+	  exportAsTextItem = new MenuItem(LS("Exportar como texto"), new MyCommand("file","exportastext"));
 	  fileMenuBar.addItem(exportAsTextItem);
-	  exportToDropboxItem = new MenuItem(LS("Export To Dropbox"), new MyCommand("file", "exporttodropbox"));
+	  exportToDropboxItem = new MenuItem(LS("Exportar para Dropbox"), new MyCommand("file", "exporttodropbox"));
 	  exportToDropboxItem.setEnabled(ExportToDropbox.isSupported());
 	  fileMenuBar.addItem(exportToDropboxItem);
 	  fileMenuBar.addSeparator();
-	  aboutItem=new MenuItem(LS("About"),(Command)null);
+	  aboutItem=new MenuItem(LS("Sobre"),(Command)null);
 	  fileMenuBar.addItem(aboutItem);
 	  aboutItem.setScheduledCommand(new MyCommand("file","about"));
 	  
@@ -409,7 +409,7 @@ MouseOutHandler, MouseWheelHandler {
 	      VERTICALPANELWIDTH = 128;
 
 	  menuBar = new MenuBar();
-	  menuBar.addItem(LS("File"), fileMenuBar);
+	  menuBar.addItem(LS("Arquivo"), fileMenuBar);
 	  verticalPanel=new VerticalPanel();
 	  
 	  // make buttons side by side if there's room
@@ -419,38 +419,55 @@ MouseOutHandler, MouseWheelHandler {
 	m.addItem(undoItem = menuItemWithShortcut(LS("Undo"), LS("Ctrl-Z"), new MyCommand("edit","undo")));
 	m.addItem(redoItem = menuItemWithShortcut(LS("Redo"), LS("Ctrl-Y"), new MyCommand("edit","redo")));
 	m.addSeparator();
-	m.addItem(cutItem = menuItemWithShortcut(LS("Cut"), LS("Ctrl-X"), new MyCommand("edit","cut")));
-	m.addItem(copyItem = menuItemWithShortcut(LS("Copy"), LS("Ctrl-C"), new MyCommand("edit","copy")));
-	m.addItem(pasteItem = menuItemWithShortcut(LS("Paste"), LS("Ctrl-V"), new MyCommand("edit","paste")));
+	m.addItem(cutItem = menuItemWithShortcut(LS("Cortar"), LS("Ctrl-X"), new MyCommand("edit","cut")));
+	m.addItem(copyItem = menuItemWithShortcut(LS("Copiar"), LS("Ctrl-C"), new MyCommand("edit","copy")));
+	m.addItem(pasteItem = menuItemWithShortcut(LS("Colar"), LS("Ctrl-V"), new MyCommand("edit","paste")));
 	pasteItem.setEnabled(false);
 	
-	m.addItem(menuItemWithShortcut(LS("Duplicate"), LS("Ctrl-D"), new MyCommand("edit","duplicate")));
+	m.addItem(menuItemWithShortcut(LS("Duplicar"), LS("Ctrl-D"), new MyCommand("edit","duplicate")));
 	
 	m.addSeparator();
-	m.addItem(selectAllItem = menuItemWithShortcut(LS("Select All"), LS("Ctrl-A"), new MyCommand("edit","selectAll")));
+	m.addItem(selectAllItem = menuItemWithShortcut(LS("Selecionar todos"), LS("Ctrl-A"), new MyCommand("edit","selectAll")));
 	m.addSeparator();
-	m.addItem(new MenuItem(weAreInUS() ? LS("Center Circuit") : LS("Centre Circuit"), new MyCommand("edit", "centrecircuit")));
+	m.addItem(new MenuItem(weAreInUS() ? LS("Centralizar Circuito") : LS("Centre Circuit"), new MyCommand("edit", "centrecircuit")));
 	m.addItem(menuItemWithShortcut(LS("Zoom 100%"), "0", new MyCommand("edit", "zoom100")));
 	m.addItem(menuItemWithShortcut(LS("Zoom In"), "+", new MyCommand("edit", "zoomin")));
 	m.addItem(menuItemWithShortcut(LS("Zoom Out"), "-", new MyCommand("edit", "zoomout")));
-	menuBar.addItem(LS("Edit"),m);
+	menuBar.addItem(LS("Editar"),m);
+	MenuBar otherMenuBar = new MenuBar(true);
+    	CheckboxMenuItem mi;
+    	otherMenuBar.addItem(mi=getClassCheckItem(LS("Arrastar todos os elementos"), "DragAll"));
+    	mi.addShortcut(LS("(Alt-arrastar)"));
+    	otherMenuBar.addItem(mi=getClassCheckItem(LS("Arrastar linha"), "DragRow"));
+    	mi.addShortcut(LS("(A-S-arrastar)"));
+    	otherMenuBar.addItem(mi=getClassCheckItem(LS("Arrastar Coluna"), "DragColumn"));
+    	mi.addShortcut(isMac ? LS("(A-Cmd-arrastar)") : LS("(A-M-drag)"));
+    	otherMenuBar.addItem(getClassCheckItem(LS("Arrastar Selecionado"), "DragSelected"));
+    	otherMenuBar.addItem(mi=getClassCheckItem(LS("Arrastar Pino"), "DragPost"));
+    	mi.addShortcut("(" + ctrlMetaKey + "-arrastar)");
+
 
 	MenuBar drawMenuBar = new MenuBar(true);
 	drawMenuBar.setAutoOpen(true);
+	MenuBar oacMenuBar = new MenuBar(true);
+	oacMenuBar.setAutoOpen(true);
 
-	menuBar.addItem(LS("Draw"), drawMenuBar);
+	menuBar.addItem(LS("Desenhar"), oacMenuBar);
+    	menuBar.addItem(LS("Arrastar"), otherMenuBar);
+
 	
 	m = new MenuBar(true);
-	m.addItem(new MenuItem(LS("Stack All"), new MyCommand("scopes", "stackAll")));
-	m.addItem(new MenuItem(LS("Unstack All"),new MyCommand("scopes", "unstackAll")));
-	m.addItem(new MenuItem(LS("Combine All"),new MyCommand("scopes", "combineAll")));
+	m.addItem(new MenuItem(LS("Empilhar todos"), new MyCommand("scopes", "stackAll")));
+	m.addItem(new MenuItem(LS("Desempilhar todos"),new MyCommand("scopes", "unstackAll")));
+	m.addItem(new MenuItem(LS("Combinar todos"),new MyCommand("scopes", "combineAll")));
 	menuBar.addItem(LS("Scopes"), m);
 		
 	optionsMenuBar = m = new MenuBar(true );
-	menuBar.addItem(LS("Options"), optionsMenuBar);
-	m.addItem(dotsCheckItem = new CheckboxMenuItem(LS("Show Current")));
+	menuBar.addItem(LS("Preferências"), optionsMenuBar);
+	menuBar.addItem(LS("Draw"), drawMenuBar);
+	m.addItem(dotsCheckItem = new CheckboxMenuItem(LS("Mostrar Corrente")));
 	dotsCheckItem.setState(true);
-	m.addItem(voltsCheckItem = new CheckboxMenuItem(LS("Show Voltage"),
+	m.addItem(voltsCheckItem = new CheckboxMenuItem(LS("Mostrar Voltagem"),
 			new Command() { public void execute(){
 				if (voltsCheckItem.getState())
 					powerCheckItem.setState(false);
@@ -458,34 +475,34 @@ MouseOutHandler, MouseWheelHandler {
 			}
 			}));
 	voltsCheckItem.setState(true);
-	m.addItem(powerCheckItem = new CheckboxMenuItem(LS("Show Power"),
+	m.addItem(powerCheckItem = new CheckboxMenuItem(LS("Mostrar Potência"),
 			new Command() { public void execute(){
 				if (powerCheckItem.getState())
 					voltsCheckItem.setState(false);
 				setPowerBarEnable();
 			}
 	}));
-	m.addItem(showValuesCheckItem = new CheckboxMenuItem(LS("Show Values")));
+	m.addItem(showValuesCheckItem = new CheckboxMenuItem(LS("Mostrar Valores")));
 	showValuesCheckItem.setState(true);
 	//m.add(conductanceCheckItem = getCheckItem(LS("Show Conductance")));
-	m.addItem(smallGridCheckItem = new CheckboxMenuItem(LS("Small Grid"),
+	m.addItem(smallGridCheckItem = new CheckboxMenuItem(LS("Grade Pequena"),
 			new Command() { public void execute(){
 				setGrid();
 			}
 	}));
-	m.addItem(crossHairCheckItem = new CheckboxMenuItem(LS("Show Cursor Cross Hairs"),
+	m.addItem(crossHairCheckItem = new CheckboxMenuItem(LS("Mostrar Cursor em Cruz"),
 		new Command() { public void execute(){
 		    setOptionInStorage("crossHair", crossHairCheckItem.getState());
 		}
 	}));
 	crossHairCheckItem.setState(getOptionFromStorage("crossHair", false));
-	m.addItem(euroResistorCheckItem = new CheckboxMenuItem(LS("European Resistors"),
+	m.addItem(euroResistorCheckItem = new CheckboxMenuItem(LS("Resistores Europeus "),
 		new Command() { public void execute(){
 		    setOptionInStorage("euroResistors", euroResistorCheckItem.getState());
 		}
 	}));
 	euroResistorCheckItem.setState(euroSetting);
-	m.addItem(printableCheckItem = new CheckboxMenuItem(LS("White Background"),
+	m.addItem(printableCheckItem = new CheckboxMenuItem(LS("Fundo Branco"),
 			new Command() { public void execute(){
 				int i;
 				for (i=0;i<scopeCount;i++)
@@ -494,7 +511,7 @@ MouseOutHandler, MouseWheelHandler {
 			}
 	}));
 	printableCheckItem.setState(printable);
-	m.addItem(alternativeColorCheckItem = new CheckboxMenuItem(LS("Alt Color for Volts & Pwr"),
+	m.addItem(alternativeColorCheckItem = new CheckboxMenuItem(LS("Cores alternativas para Volts & Pwr"),
 		new Command() { public void execute(){
 
 			setOptionInStorage("alternativeColor", alternativeColorCheckItem.getState());
@@ -503,19 +520,21 @@ MouseOutHandler, MouseWheelHandler {
 	}));
 	alternativeColorCheckItem.setState(getOptionFromStorage("alternativeColor", false));
 	
-	m.addItem(conventionCheckItem = new CheckboxMenuItem(LS("Conventional Current Motion"),
+	m.addItem(conventionCheckItem = new CheckboxMenuItem(LS("Movimento convencional da corrente"),
 		new Command() { public void execute(){
 		    setOptionInStorage("conventionalCurrent", conventionCheckItem.getState());
 		}
 	}));
 	conventionCheckItem.setState(convention);
-	m.addItem(optionsItem = new CheckboxAlignedMenuItem(LS("Other Options..."),
+	m.addItem(optionsItem = new CheckboxAlignedMenuItem(LS("Outras preferências..."),
 			new MyCommand("options","other")));
 
 	mainMenuBar = new MenuBar(true);
 	mainMenuBar.setAutoOpen(true);
 	composeMainMenu(mainMenuBar);
 	composeMainMenu(drawMenuBar);
+	composeOACMenu(oacMenuBar);
+
 
 	  
 	  layoutPanel.addNorth(menuBar, MENUBARHEIGHT);
@@ -751,6 +770,44 @@ MouseOutHandler, MouseWheelHandler {
     }-*/;
     
     boolean shown = false;
+    public void composeOACMenu(MenuBar mainMenuBar) {
+    	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar Fio"), "WireElm"));
+    	
+        	
+    	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar Texto"), "TextElm"));
+    	
+    	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar Entrada Lógica"), "LogicInputElm2"));
+    	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar Saída Lógica"), "LogicOutputElm"));
+    	
+    	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar Inversor"), "InverterElm"));
+    	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar porta AND"), "AndGateElm"));
+    	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar porta OR"), "OrGateElm"));
+    	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar porta NAND"), "NandGateElm"));
+    	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar porta NOR"), "NorGateElm"));
+    	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar porta XOR"), "XorGateElm"));
+    	
+    	MenuBar chipMenuBar = new MenuBar(true);
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Flip-Flop Tipo D"), "DFlipFlopElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Flip-Flop Tipo JK"), "JKFlipFlopElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Flip-Flop Tipo T"), "TFlipFlopElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar LED de 7 Segmentos"), "SevenSegElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Decodificador de 7 Segmentos"), "SevenSegDecoderElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Multiplexador"), "MultiplexerElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Demultiplexador"), "DeMultiplexerElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Registrador de deslocamento SIPO"), "SipoShiftElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Registrador de deslocamento PISO"), "PisoShiftElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Contador"), "CounterElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Contador de Década"), "DecadeElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Latch"), "LatchElm"));
+    	//chipMenuBar.addItem(getClassCheckItem("Add Static RAM", "SRAMElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Gerador de Sequencia"), "SeqGenElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Somador Completo"), "FullAdderElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Somador Incompleto"), "HalfAdderElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Circuito Lógico Personalizado"), "UserDefinedLogicElm"));
+    	mainMenuBar.addItem(SafeHtmlUtils.fromTrustedString(CheckboxMenuItem.checkBoxHtml+LS("&nbsp;</div>Chips digitais prontos")), chipMenuBar);
+    	
+    	
+    }
     
     public void composeMainMenu(MenuBar mainMenuBar) {
     	mainMenuBar.addItem(getClassCheckItem(LS("Add Wire"), "WireElm"));
