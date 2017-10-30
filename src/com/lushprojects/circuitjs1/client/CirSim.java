@@ -777,7 +777,7 @@ MouseOutHandler, MouseWheelHandler {
     	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar Texto"), "TextElm"));
     	
     	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar Entrada Lógica"), "LogicInputElm2"));
-    	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar Saída Lógica"), "LogicOutputElm"));
+    	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar Saída Lógica"), "LogicOutputElm2"));
     	
     	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar Inversor"), "InverterElm"));
     	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar porta AND"), "AndGateElm"));
@@ -4520,8 +4520,11 @@ MouseOutHandler, MouseWheelHandler {
     	    return new ComparatorElm(x1, y1, x2, y2, f, st);
     	if (tint==402)
     	    return new OTAElm(x1, y1, x2, y2, f, st);
-    	return
-    			null;
+    	if (tint==1000)
+    	    return new LogicInputElm2(x1, y1, x2, y2, f, st);
+	if (tint==1001)
+    	    return new LogicOutputElm2(x1, y1, x2, y2, f, st);
+    	return null;
     }
 
     public static CircuitElm constructElement(String n, int x1, int y1){
@@ -4581,6 +4584,8 @@ MouseOutHandler, MouseWheelHandler {
 		return (CircuitElm) new LogicInputElm2(x1, y1);
     	if (n=="LogicOutputElm")
     		return (CircuitElm) new LogicOutputElm(x1, y1);
+ 	if (n=="LogicOutputElm2")
+		return (CircuitElm) new LogicOutputElm2(x1, y1);
     	if (n=="TransformerElm")
     		return (CircuitElm) new TransformerElm(x1, y1);
     	if (n=="TappedTransformerElm")

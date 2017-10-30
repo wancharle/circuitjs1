@@ -132,7 +132,7 @@ package com.lushprojects.circuitjs1.client;
 		    flags &= ~FLAG_NUMERIC;
 	    }
 	}
-	int getShortcut() { return 'i'; }
+	int getShortcut() { return 'I'; }
 	
 	double getCurrentIntoPoint(int xa, int ya) {
 	    return -current;

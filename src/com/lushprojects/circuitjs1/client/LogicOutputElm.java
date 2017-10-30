@@ -124,7 +124,8 @@ package com.lushprojects.circuitjs1.client;
 		    flags &= ~FLAG_NUMERIC;
 	    }
 	}
-	int getShortcut() { return 'o'; }
+	
+	int getShortcut() { return 'O'; }
 	
 //    void drawHandles(Graphics g, Color c) {
 //    	g.setColor(c);
