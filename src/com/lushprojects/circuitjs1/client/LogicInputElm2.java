@@ -30,7 +30,7 @@ package com.lushprojects.circuitjs1.client;
 	}
 	public LogicInputElm2(int xa, int ya, int xb, int yb, int f,  StringTokenizer st) {
 	    super(xa, ya, xb, yb, f, st);
-	    text = st.nextToken();
+	    text = CustomLogicModel.unescape(st.nextToken());
 
 	}
 	int getDumpType() { return 1000; }

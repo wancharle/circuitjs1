@@ -325,5 +325,9 @@ import com.google.gwt.canvas.dom.client.TextMetrics;
 		}
 	    }
 	}
+	
+	public static native void log(String msg) /*-{
+	  console.log(msg);
+	}-*/;
     }
 

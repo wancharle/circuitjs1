@@ -9,7 +9,7 @@ public class LogicOutputElm2 extends LogicOutputElm {
     }
     public LogicOutputElm2(int xa, int ya, int xb, int yb, int f, StringTokenizer st) {
 	super(xa, ya, xb, yb, f, st);
-	    text = st.nextToken();
+	    text = CustomLogicModel.unescape(st.nextToken());
 
     }
 	
