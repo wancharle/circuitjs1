@@ -20,6 +20,7 @@
       <version>1.0-rc-9</version>
         <extensions>true</extensions>
           <configuration>
+              <style>PRETTY</style>
               <moduleName>com.lushprojects.circuitjs1.circuitjs1</moduleName>
                 </configuration>
                 </plugin>

@@ -796,7 +796,8 @@ MouseOutHandler, MouseWheelHandler {
     	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Demultiplexador"), "DeMultiplexerElm"));
     	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Registrador de deslocamento SIPO"), "SipoShiftElm"));
     	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Registrador de deslocamento PISO"), "PisoShiftElm"));
-    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Registrador de n Bits"), "Registrador"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Registrador de 4 ou 8 Bits"), "Registrador"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Memoria de 256 bytes"), "Memoria"));
     	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Contador"), "CounterElm"));
     	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Contador de Década"), "DecadeElm"));
     	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Latch"), "LatchElm"));
@@ -4527,6 +4528,9 @@ MouseOutHandler, MouseWheelHandler {
     	    return new LogicOutputElm2(x1, y1, x2, y2, f, st);
 	if (tint==1002)
     	    return new Registrador(x1, y1, x2, y2, f, st);
+	if (tint==1003)
+    	    return new Memoria(x1, y1, x2, y2, f, st);
+    
     	return null;
     }
 
@@ -4587,10 +4591,12 @@ MouseOutHandler, MouseWheelHandler {
 		return (CircuitElm) new LogicInputElm2(x1, y1);
     	if (n=="LogicOutputElm")
     		return (CircuitElm) new LogicOutputElm(x1, y1);
- 	if (n=="LogicOutputElm2")
-		return (CircuitElm) new LogicOutputElm2(x1, y1);
- 	if (n=="Registrador")
-		return (CircuitElm) new Registrador(x1, y1);
+        if (n=="LogicOutputElm2")
+            return (CircuitElm) new LogicOutputElm2(x1, y1);
+        if (n=="Registrador")
+            return (CircuitElm) new Registrador(x1, y1);
+    	if (n=="Memoria")
+            return (CircuitElm) new Memoria(x1, y1);
     	if (n=="TransformerElm")
     		return (CircuitElm) new TransformerElm(x1, y1);
     	if (n=="TappedTransformerElm")

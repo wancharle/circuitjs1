@@ -41,6 +41,7 @@ package com.lushprojects.circuitjs1.client;
 	boolean needsBits() { return true; }
 	String getChipName() { return "Counter"; }
 	void setupPins() {
+        if (bits!=8) bits =8;
 	    sizeX = 2;
 	    sizeY = bits > 2 ? bits : 2;
 	    pins = new Pin[getPostCount()];
