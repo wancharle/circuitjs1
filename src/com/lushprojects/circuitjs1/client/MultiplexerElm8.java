@@ -32,7 +32,7 @@ package com.lushprojects.circuitjs1.client;
 			    StringTokenizer st) {
 	    super(xa, ya, xb, yb, f, st);
 	}
-	String getChipName() { return "Multiplexador de 8 Bits"; }
+	String getChipName() { return "Multiplexador de 8 entradas de 8 Bits"; }
 
 	void setupPins() {
 	    sizeX = 4;

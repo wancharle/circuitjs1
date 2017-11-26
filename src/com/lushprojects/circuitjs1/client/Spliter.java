@@ -14,7 +14,7 @@ public class Spliter  extends ChipElm {
     }
 
  
-    String getChipName() { return "Spliter"; }
+    String getChipName() { return "Spliter (separa um grupo de fios em 8 fios)"; }
 
     void setupPins() {
         if ((flags & FLAG_ROTATE) != 0) angulo = 1;

@@ -16,7 +16,7 @@ public class Jointer extends ChipElm {
     }
 
  
-    String getChipName() { return "Jointer"; }
+    String getChipName() { return "Jointer (junta 8 fios em 1)"; }
 
     void setupPins() {
         if ((flags & FLAG_ROTATE) != 0) angulo = 1;
