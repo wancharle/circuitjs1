@@ -775,7 +775,7 @@ MouseOutHandler, MouseWheelHandler {
     	
         	
     	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar Texto"), "TextElm"));
-    	
+    	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar Clock"), "ClockElm"));
     	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar Entrada Lógica"), "LogicInputElm2"));
     	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar Saída Lógica"), "LogicOutputElm2"));
     	
@@ -785,29 +785,39 @@ MouseOutHandler, MouseWheelHandler {
     	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar porta NAND"), "NandGateElm"));
     	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar porta NOR"), "NorGateElm"));
     	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar porta XOR"), "XorGateElm"));
+    	mainMenuBar.addItem(getClassCheckItem(LS("Adicionar Circuito Lógico Personalizado"), "UserDefinedLogicElm"));
     	
+    	MenuBar menMenuBar = new MenuBar(true);
+   	    menMenuBar.addItem(getClassCheckItem(LS("Adicionar Latch"), "LatchElm"));
+    	menMenuBar.addItem(getClassCheckItem(LS("Adicionar Flip-Flop Tipo D"), "DFlipFlopElm"));
+    	menMenuBar.addItem(getClassCheckItem(LS("Adicionar Flip-Flop Tipo JK"), "JKFlipFlopElm"));
+    	menMenuBar.addItem(getClassCheckItem(LS("Adicionar Flip-Flop Tipo T"), "TFlipFlopElm"));
+    	menMenuBar.addItem(getClassCheckItem(LS("Adicionar Contador"), "CounterElm"));
+    	menMenuBar.addItem(getClassCheckItem(LS("Adicionar Contador de Década"), "DecadeElm"));
+    	menMenuBar.addItem(getClassCheckItem(LS("Adicionar Registrador de deslocamento SIPO"), "SipoShiftElm"));
+    	menMenuBar.addItem(getClassCheckItem(LS("Adicionar Registrador de deslocamento PISO"), "PisoShiftElm"));
+    	menMenuBar.addItem(getClassCheckItem(LS("Adicionar Registrador de 4 ou 8 Bits"), "Registrador"));
+    	menMenuBar.addItem(getClassCheckItem(LS("Adicionar Memoria de 256 bytes"), "Memoria"));
+    	mainMenuBar.addItem(SafeHtmlUtils.fromTrustedString(CheckboxMenuItem.checkBoxHtml+LS("&nbsp;</div>Circuitos com Memoria")), menMenuBar);
+ 
+ 
+    	MenuBar ariMenuBar = new MenuBar(true);
+        ariMenuBar.addItem(getClassCheckItem(LS("Adicionar Somador Completo"), "FullAdderElm"));
+    	ariMenuBar.addItem(getClassCheckItem(LS("Adicionar Somador Incompleto"), "HalfAdderElm"));
+    	mainMenuBar.addItem(SafeHtmlUtils.fromTrustedString(CheckboxMenuItem.checkBoxHtml+LS("&nbsp;</div>Circuitos Aritiméticos")), ariMenuBar);
+ 
+
     	MenuBar chipMenuBar = new MenuBar(true);
-    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Flip-Flop Tipo D"), "DFlipFlopElm"));
-    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Flip-Flop Tipo JK"), "JKFlipFlopElm"));
-    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Flip-Flop Tipo T"), "TFlipFlopElm"));
     	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar LED de 7 Segmentos"), "SevenSegElm"));
     	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Decodificador de 7 Segmentos"), "SevenSegDecoderElm"));
     	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Multiplexador"), "MultiplexerElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Multiplexador de 8 bits"), "MultiplexerElm8"));
     	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Demultiplexador"), "DeMultiplexerElm"));
-    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Registrador de deslocamento SIPO"), "SipoShiftElm"));
-    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Registrador de deslocamento PISO"), "PisoShiftElm"));
-    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Registrador de 4 ou 8 Bits"), "Registrador"));
-    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Spliter de 4 ou 8 Bits"), "Spliter"));
-    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Memoria de 256 bytes"), "Memoria"));
-    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Contador"), "CounterElm"));
-    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Contador de Década"), "DecadeElm"));
-    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Latch"), "LatchElm"));
-    	//chipMenuBar.addItem(getClassCheckItem("Add Static RAM", "SRAMElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Demultiplexador de 8 bits"), "DeMultiplexerElm8"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Jointer de 8 Bits"), "Jointer"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Spliter de 8 Bits"), "Spliter"));
     	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Gerador de Sequencia"), "SeqGenElm"));
-    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Somador Completo"), "FullAdderElm"));
-    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Somador Incompleto"), "HalfAdderElm"));
-    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Circuito Lógico Personalizado"), "UserDefinedLogicElm"));
-    	mainMenuBar.addItem(SafeHtmlUtils.fromTrustedString(CheckboxMenuItem.checkBoxHtml+LS("&nbsp;</div>Chips digitais prontos")), chipMenuBar);
+   	mainMenuBar.addItem(SafeHtmlUtils.fromTrustedString(CheckboxMenuItem.checkBoxHtml+LS("&nbsp;</div>Outros")), chipMenuBar);
     	
     	
     }
@@ -4533,7 +4543,14 @@ MouseOutHandler, MouseWheelHandler {
     	    return new Memoria(x1, y1, x2, y2, f, st);
     if (tint==1004)
     	    return new Spliter(x1, y1, x2, y2, f, st);
-    
+    if (tint==1005)
+    	    return new Jointer(x1, y1, x2, y2, f, st);
+    if (tint==1006)
+    		return (CircuitElm) new MultiplexerElm8(x1, y1, x2, y2, f, st);
+  	if (tint==1007)
+    		return (CircuitElm) new DeMultiplexerElm8(x1, y1, x2, y2, f, st);
+ 
+ 
     	return null;
     }
 
@@ -4598,6 +4615,8 @@ MouseOutHandler, MouseWheelHandler {
             return (CircuitElm) new LogicOutputElm2(x1, y1);
         if (n=="Registrador")
             return (CircuitElm) new Registrador(x1, y1);
+        if (n=="Jointer")
+            return (CircuitElm) new Jointer(x1, y1);
         if (n=="Spliter")
             return (CircuitElm) new Spliter(x1, y1);
     	if (n=="Memoria")
@@ -4678,10 +4697,14 @@ MouseOutHandler, MouseWheelHandler {
     		return (CircuitElm) new JKFlipFlopElm(x1, y1);
     	if (n=="SevenSegElm")
     		return (CircuitElm) new SevenSegElm(x1, y1);
-    	if (n=="MultiplexerElm")
+     	if (n=="MultiplexerElm")
     		return (CircuitElm) new MultiplexerElm(x1, y1);
+    	if (n=="MultiplexerElm8")
+    		return (CircuitElm) new MultiplexerElm8(x1, y1);
     	if (n=="DeMultiplexerElm")
     		return (CircuitElm) new DeMultiplexerElm(x1, y1);
+    	if (n=="DeMultiplexerElm8")
+    		return (CircuitElm) new DeMultiplexerElm8(x1, y1);
     	if (n=="SipoShiftElm")
     		return (CircuitElm) new SipoShiftElm(x1, y1);
     	if (n=="PisoShiftElm")
