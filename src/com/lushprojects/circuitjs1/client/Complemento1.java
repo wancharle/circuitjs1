@@ -24,10 +24,10 @@ public class Complemento1 extends ChipElm {
         String s=" ";
         for (int i=0;i < 8;i++){
             s = "I".concat(Integer.toString(7-i));
-            pins[i] = new Pin(i,(angulo==0)? SIDE_S:SIDE_E, s);
+            pins[i] = new Pin(i,(angulo==0)? SIDE_N:SIDE_E, s);
 
             s = "O".concat(Integer.toString(7-i));
-            pins[8+i] = new Pin(i, (angulo==0)?SIDE_N:SIDE_W, s);
+            pins[8+i] = new Pin(i, (angulo==0)?SIDE_S:SIDE_W, s);
             pins[8+i].output=true;	
 
         }

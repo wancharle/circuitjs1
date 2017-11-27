@@ -12,7 +12,7 @@ public class Complemento2 extends ChipElm {
         super(xa, ya, xb, yb, f, st);
     }
  
-    String getChipName() { return "Complemento de 2 para 8 bits"; }
+    String getChipName() { return "Complemento de 2 para 8 bits -> C2("+Byte.toString(va)+")="+Byte.toString(vb); }
 
     void setupPins() {
         if ((flags & FLAG_ROTATE) != 0) angulo = 1;
@@ -24,10 +24,10 @@ public class Complemento2 extends ChipElm {
         String s=" ";
         for (int i=0;i < 8;i++){
             s = "I".concat(Integer.toString(7-i));
-            pins[i] = new Pin(i,(angulo==0)? SIDE_S:SIDE_E, s);
+            pins[i] = new Pin(i,(angulo==0)? SIDE_N:SIDE_E, s);
 
             s = "O".concat(Integer.toString(7-i));
-            pins[8+i] = new Pin(i, (angulo==0)?SIDE_N:SIDE_W, s);
+            pins[8+i] = new Pin(i, (angulo==0)?SIDE_S:SIDE_W, s);
             pins[8+i].output=true;	
 
         }
@@ -41,38 +41,29 @@ public class Complemento2 extends ChipElm {
     int getVoltageSourceCount() {return 8;}
 
 
+    byte vb = 0;
+    byte va = 0;
     void execute() {
         int valor = 0;
-        byte vb = 0;
-        boolean[] v = new boolean[8];
 
-        // calcula complemento de 1
-        for (int i=0;i<8;i++)
-            v[i] = !pins[i].value;
-
+        va=0;
         // calcula valor em complemento de 1 
         for (int i=0;i<8;i++)
-            valor = valor + (v[7-i] ? (int)Math.pow(2,i):0) ;
+            valor = valor + (pins[7-i].value ? (int)Math.pow(2,i):0) ;
+        va=(byte)valor;
 
-        // C2 = C1 + 1
-        valor = valor + 1;
         if (valor>255)valor=(int)(byte)valor;
-        //super.log(Integer.toString(valor));
-        vb = (byte)valor;
-       // valor = (int)vb;
-       // super.log(Byte.toString(vb));
-        int resto = valor;
-        int comparador = 128;
-        for (int i=0;i< 8;i++){
-           if (resto >= comparador){
-              pins[8+i].value = true;
-              resto = resto - comparador;
-            }
-            else{
-              pins[8+i].value = false;
-            }
-           comparador = comparador /2;
-        }
+        vb = (byte)(va*(-1));
+        pins[8+0].value = (vb&128)!=0;
+        pins[8+1].value = (vb&64)!=0;
+        pins[8+2].value = (vb&32)!=0;
+        pins[8+3].value = (vb&16)!=0;
+        pins[8+4].value = (vb&8)!=0;
+        pins[8+5].value = (vb&4)!=0;
+        pins[8+6].value = (vb&2)!=0;
+        pins[8+7].value = (vb&1)!=0;
+
+
        
 	}
 	
