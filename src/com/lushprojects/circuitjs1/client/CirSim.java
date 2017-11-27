@@ -804,6 +804,7 @@ MouseOutHandler, MouseWheelHandler {
     	MenuBar ariMenuBar = new MenuBar(true);
         ariMenuBar.addItem(getClassCheckItem(LS("Adicionar Somador Completo"), "FullAdderElm"));
     	ariMenuBar.addItem(getClassCheckItem(LS("Adicionar Somador Incompleto"), "HalfAdderElm"));
+    	ariMenuBar.addItem(getClassCheckItem(LS("Adicionar Complemento de 1 de 8 bits"), "Complemento1"));
     	mainMenuBar.addItem(SafeHtmlUtils.fromTrustedString(CheckboxMenuItem.checkBoxHtml+LS("&nbsp;</div>Circuitos Aritiméticos")), ariMenuBar);
  
 
@@ -4549,6 +4550,8 @@ MouseOutHandler, MouseWheelHandler {
     		return (CircuitElm) new MultiplexerElm8(x1, y1, x2, y2, f, st);
   	if (tint==1007)
     		return (CircuitElm) new DeMultiplexerElm8(x1, y1, x2, y2, f, st);
+   	if (tint==1008)
+    		return (CircuitElm) new Complemento1(x1, y1, x2, y2, f, st);
  
  
     	return null;
@@ -4615,6 +4618,8 @@ MouseOutHandler, MouseWheelHandler {
             return (CircuitElm) new LogicOutputElm2(x1, y1);
         if (n=="Registrador")
             return (CircuitElm) new Registrador(x1, y1);
+        if (n=="Complemento1")
+            return (CircuitElm) new Complemento1(x1, y1);
         if (n=="Jointer")
             return (CircuitElm) new Jointer(x1, y1);
         if (n=="Spliter")
