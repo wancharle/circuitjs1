@@ -807,12 +807,16 @@ MouseOutHandler, MouseWheelHandler {
     	ariMenuBar.addItem(getClassCheckItem(LS("Adicionar Complemento de 1 de 8 bits"), "Complemento1"));
     	ariMenuBar.addItem(getClassCheckItem(LS("Adicionar Complemento de 2 de 8 bits"), "Complemento2"));
     	ariMenuBar.addItem(getClassCheckItem(LS("Adicionar Somador de 8 bits"), "Somador8"));
+    	ariMenuBar.addItem(getClassCheckItem(LS("Adicionar Subtrator de 8 bits"), "Subtrator8"));
+    	ariMenuBar.addItem(getClassCheckItem(LS("Adicionar Comparador de 8 bits"), "Comparador8"));
     	mainMenuBar.addItem(SafeHtmlUtils.fromTrustedString(CheckboxMenuItem.checkBoxHtml+LS("&nbsp;</div>Circuitos Aritiméticos")), ariMenuBar);
  
 
     	MenuBar chipMenuBar = new MenuBar(true);
     	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar LED de 7 Segmentos"), "SevenSegElm"));
     	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Decodificador de 7 Segmentos"), "SevenSegDecoderElm"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Display"), "Display"));
+    	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Display com spliter embutido"), "Display8"));
     	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Multiplexador"), "MultiplexerElm"));
     	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Multiplexador de 8 bits"), "MultiplexerElm8"));
     	chipMenuBar.addItem(getClassCheckItem(LS("Adicionar Demultiplexador"), "DeMultiplexerElm"));
@@ -4558,7 +4562,15 @@ MouseOutHandler, MouseWheelHandler {
     		return (CircuitElm) new Complemento2(x1, y1, x2, y2, f, st);
    	if (tint==1010)
     		return (CircuitElm) new Somador8(x1, y1, x2, y2, f, st);
- 
+ 	if (tint==1011)
+    	    return new Display(x1, y1, x2, y2, f, st);
+	if (tint==1012)
+    	    return new Display8(x1, y1, x2, y2, f, st);
+	if (tint==1013)
+    	    return new Subtrator8(x1, y1, x2, y2, f, st);
+    if (tint==1014)
+    	    return new Comparador8(x1, y1, x2, y2, f, st);
+	
  
     	return null;
     }
@@ -4624,9 +4636,20 @@ MouseOutHandler, MouseWheelHandler {
             return (CircuitElm) new LogicOutputElm2(x1, y1);
         if (n=="Registrador")
             return (CircuitElm) new Registrador(x1, y1);
+        if (n=="Comparador8")
+            return (CircuitElm) new Comparador8(x1, y1);
+        if (n=="Subtrator8")
+            return (CircuitElm) new Subtrator8(x1, y1);
+ 
+        if (n=="Display")
+            return (CircuitElm) new Display(x1, y1);
+        if (n=="Display8")
+            return (CircuitElm) new Display8(x1, y1);
+ 
+        if (n=="Display8")
+            return (CircuitElm) new Display8(x1, y1);
         if (n=="Somador8")
             return (CircuitElm) new Somador8(x1, y1);
- 
         if (n=="Complemento1")
             return (CircuitElm) new Complemento1(x1, y1);
         if (n=="Complemento2")

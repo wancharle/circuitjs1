@@ -65,9 +65,8 @@ public class Somador8 extends ChipElm {
         va=(byte)valorA;
         vb=(byte)valorB;
 
-
-        valor =(valorA + valorB);
-        if ((valorA >0 && valorB >0 && valor>127) || valor<-128){
+        valor = (va + vb);
+        if (valor>127 || valor<-128){
             pins[24].value=true; //overflow;
          }else {
             pins[24].value=false; //overflow;
